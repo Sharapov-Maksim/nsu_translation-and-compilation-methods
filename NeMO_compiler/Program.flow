@@ -97,11 +97,11 @@ s2block(str : string) -> Block {
 
 
 main() -> int {
-	ar = s2block("{ x := (  (( 4 + 5 ) * ( 18  + 3) ) + eee)   }");
+	ar = s2block("{x := ((( 4 + 5 ) * ( 18  + 3) ) + eee);}");
 	
 	// println("Arithmetic result: " + i2s(ar2i(ar)));
 	
-	println("Postfix notation: " + block2s(ar));
+	println("AST: " + block2s(ar));
 
 	0;
 }

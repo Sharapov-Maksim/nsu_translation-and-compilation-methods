@@ -2,10 +2,11 @@
 
 block = "{" ws STATEMENT*:stmts ws "}" {Block(:stmts)};
 
-STATEMENT = var_assign | var_decl;
+STATEMENT = STATEMENT_BODY;
+STATEMENT_BODY = (var_assign | var_decl);
 
-var_assign = identifier:id ":=" EXPR:e {VarAssign(:id, :e)} ;
-var_decl = "VAR" ws identifier:id ws ":" ws type:t ws ";" {VarDecl(:id, :t)}; 
+var_assign = identifier:id ":=" EXPR:e ";" {VarAssign(:id, :e)} ; // TODO move ";"
+var_decl = "VAR" identifier:id ":" ws type:t ws ";" {VarDecl(:id, :t)}; 
 
 EXPR = sum | mul | int | identifier;
 sum = ws "(" EXPR:l "+" EXPR:r ")" ws {ArSum(:l, :r)};
