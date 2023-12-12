@@ -1,0 +1,24 @@
+// TODO
+// block = "{" ws ( var_decl | var_assign ) ws "}"
+
+var_assign = identifier:id ":=" EXPR:e {VarAssign(:id, :e)} ;
+var_decl = "VAR" ws identifier:id ws ":" ws type:t ws ";" {VarDecl(:id, :t)}; 
+
+EXPR = sum | mul | int | identifier;
+sum = ws "(" EXPR:l "+" EXPR:r ")" ws {ArSum(:l, :r)};
+mul = ws "(" EXPR:l "*" EXPR:r ")" ws {ArMult(:l, :r)};
+int = ws digit+ $s ws { ArInt(s2i($s))};
+
+
+identifier = ws (letter symbol*) $s ws {Identifier($s)};
+type = "INT" | "ARRAY OF INT";
+
+symbol = letter | digit | "_";
+letter = letterLower | letterUpper;
+
+digit = '0'-'9';
+letterLower = 'a'-'z';
+letterUpper = 'A'-'Z';
+
+ws = (' ' | '\t' | '\n' | '\r')*;
+

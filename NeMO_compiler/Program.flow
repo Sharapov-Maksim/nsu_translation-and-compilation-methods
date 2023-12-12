@@ -1,0 +1,79 @@
+import lingo/pegcode/driver;
+
+
+ArExpr ::= ArSum, ArMult, ArInt, Identifier;
+	ArSum(lhs : ArExpr, rhs : ArExpr);
+	ArMult(lhs : ArExpr, rhs : ArExpr);
+	ArInt(x : int);
+	Identifier(id : string);
+
+
+Statement ::= VarAssign;
+	VarAssign(id : Identifier, expr : ArExpr);
+	VarDecl(id : Identifier, type : Type);
+	Type(t : string);
+
+
+state2s (s : Statement) -> string {
+	switch (s : Statement) {
+		VarAssign(id, expr): {
+			"Assign(" + id2s(id) + ", " + ar2s(expr) + ")"
+		}
+	}
+}
+
+id2s (id : Identifier) -> string {
+	switch (id : Identifier) {
+		Identifier(val): {
+			"Id(" + val + ")"
+		}
+	}
+}
+
+ar2s (e : ArExpr) -> string {
+	switch (e : ArExpr) {
+		ArSum(lhs, rhs): {
+			"ArSum(" + ar2s(lhs) + ", " + ar2s(rhs) + ")";
+		};
+		ArMult(lhs, rhs): {
+			"ArMult(" + ar2s(lhs) + ", " + ar2s(rhs) + ")";
+		};
+		ArInt(x): { i2s(x) };
+		Identifier(id) : { id2s(e) }
+	}
+}
+
+ar2i (e : ArExpr) -> int {
+	switch (e : ArExpr) {
+		ArSum(lhs, rhs): {
+			ar2i(lhs) + ar2i(rhs);
+		};
+		ArMult(lhs, rhs): {
+			ar2i(lhs) * ar2i(rhs);
+		};
+		ArInt(x): {x};
+		Identifier(id): {100000}
+	}
+}
+
+
+s2statement(str : string) -> Statement {
+	e_gr = "#include education/task1/program.lingo";
+	parsic(
+		compilePegGrammar(e_gr), 
+		str,
+		defaultPegActions
+		//SemanticActions(setTree(defaultPegActions.t, "createArInt", \s -> VarAssign(s[0])))
+	)
+}
+
+
+main() -> int {
+	ar = s2statement("x := (  (( 4 + 5 ) * ( 18  + 3) ) + eee)   ");
+	
+	// println("Arithmetic result: " + i2s(ar2i(ar)));
+	
+	println("Postfix notation: " + state2s(ar));
+
+	0;
+}
