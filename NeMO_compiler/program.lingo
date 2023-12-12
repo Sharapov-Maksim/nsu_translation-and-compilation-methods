@@ -1,5 +1,8 @@
-// TODO
-// block = "{" ws ( var_decl | var_assign ) ws "}"
+
+
+block = "{" ws STATEMENT*:stmts ws "}" {Block(:stmts)};
+
+STATEMENT = var_assign | var_decl;
 
 var_assign = identifier:id ":=" EXPR:e {VarAssign(:id, :e)} ;
 var_decl = "VAR" ws identifier:id ws ":" ws type:t ws ";" {VarDecl(:id, :t)}; 

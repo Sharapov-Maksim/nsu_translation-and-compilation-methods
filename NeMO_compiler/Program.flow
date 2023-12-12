@@ -13,6 +13,11 @@ Statement ::= VarAssign;
 	VarDecl(id : Identifier, type : Type);
 	Type(t : string);
 
+Block(stmts : [Statement]);
+
+block2s (b : Block) -> string {
+	
+}
 
 state2s (s : Statement) -> string {
 	switch (s : Statement) {
@@ -67,9 +72,19 @@ s2statement(str : string) -> Statement {
 	)
 }
 
+s2block(str : string) -> Block {
+	e_gr = "#include education/nsu_translation-and-compilation-methods/NeMo_compiler/program.lingo";
+	parsic(
+		compilePegGrammar(e_gr), 
+		str,
+		defaultPegActions
+		//SemanticActions(setTree(defaultPegActions.t, "createArInt", \s -> VarAssign(s[0])))
+	)
+}
+
 
 main() -> int {
-	ar = s2statement("x := (  (( 4 + 5 ) * ( 18  + 3) ) + eee)   ");
+	ar = s2statement("{ x := (  (( 4 + 5 ) * ( 18  + 3) ) + eee)   }");
 	
 	// println("Arithmetic result: " + i2s(ar2i(ar)));
 	
