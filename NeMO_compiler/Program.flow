@@ -16,7 +16,20 @@ Statement ::= VarAssign;
 Block(stmts : [Statement]);
 
 block2s (b : Block) -> string {
-	
+	switch (b : Block) {
+		Block(stmts): {
+			"Block(" + stmts2s(stmts) + ")"
+		}
+	}
+}
+
+stmts2s (stmts : [Statement]) -> string {
+	if (length(stmts) == 0) 
+		""
+	else if (length(stmts) == 1)
+		state2s(stmts[0])
+	else
+		state2s(stmts[0]) + ", " + stmts2s(tail(stmts))
 }
 
 state2s (s : Statement) -> string {
@@ -84,11 +97,11 @@ s2block(str : string) -> Block {
 
 
 main() -> int {
-	ar = s2statement("{ x := (  (( 4 + 5 ) * ( 18  + 3) ) + eee)   }");
+	ar = s2block("{ x := (  (( 4 + 5 ) * ( 18  + 3) ) + eee)   }");
 	
 	// println("Arithmetic result: " + i2s(ar2i(ar)));
 	
-	println("Postfix notation: " + state2s(ar));
+	println("Postfix notation: " + block2s(ar));
 
 	0;
 }
