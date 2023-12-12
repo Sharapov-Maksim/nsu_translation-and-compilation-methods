@@ -1,6 +1,0 @@
-import runtime;
-
-main() {
-	println("Hello world");
-}
-

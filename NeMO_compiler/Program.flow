@@ -58,7 +58,7 @@ ar2i (e : ArExpr) -> int {
 
 
 s2statement(str : string) -> Statement {
-	e_gr = "#include education/task1/program.lingo";
+	e_gr = "#include education/nsu_translation-and-compilation-methods/NeMo_compiler/program.lingo";
 	parsic(
 		compilePegGrammar(e_gr), 
 		str,
