@@ -1,23 +1,27 @@
 
 
-block = "{" ws STATEMENT*:stmts ws "}" {Block(:stmts)};
+block = "{" (ws STATEMENT)*:stmts ws "}" {Block(:stmts)};
 
-STATEMENT = STATEMENT_BODY;
-STATEMENT_BODY = (var_assign | var_decl);
+STATEMENT = STATEMENT_BODY ;
+STATEMENT_BODY = (var_assign | var_decl | test) ;
 
-var_assign = identifier:id ":=" EXPR:e ";" {VarAssign(:id, :e)} ; // TODO move ";"
-var_decl = ws "VAR" identifier:id ":" ws type:t ws ";" {VarDecl(:id, :t)} ; 
+var_assign = identifier:id ws ":=" ws EXPR:e ws ";" {VarAssign(:id, :e)} ; // TODO move ";"
+var_decl = "VAR" ws identifier:id ws ":" ws type:t ws ";" {VarDecl(:id, :t)} ; 
+test = EXPR:e ws "?" ws ";" {Test(:e)} ;
+
 
 EXPR = sum | mul | sub | div | mod | int | identifier;
-sum = ws "(" EXPR:l "+" EXPR:r ")" ws {ArSum(:l, :r)};
-mul = ws "(" EXPR:l "*" EXPR:r ")" ws {ArMult(:l, :r)};
-sub = ws "(" EXPR:l "-" EXPR:r ")" ws {ArSub(:l, :r)};
-div = ws "(" EXPR:l "/" EXPR:r ")" ws {ArDiv(:l, :r)};
-mod = ws "(" EXPR:l "%" EXPR:r ")" ws {ArMod(:l, :r)};
-int = ws digit+ $s ws { ArInt(s2i($s))};
+sum = "(" ws EXPR:l ws "+" ws EXPR:r ws ")" {ArSum(:l, :r)};
+mul = "(" ws EXPR:l ws "*" ws EXPR:r ws ")" {ArMult(:l, :r)};
+sub = "(" ws EXPR:l ws "-" ws EXPR:r ws ")" {ArSub(:l, :r)};
+div = "(" ws EXPR:l ws "/" ws EXPR:r ws ")" {ArDiv(:l, :r)};
+mod = "(" ws EXPR:l ws "%" ws EXPR:r ws ")" {ArMod(:l, :r)};
+int = digit+ $s { ArInt(s2i($s))};
 
 
-identifier = ws (letter symbol*) $s ws {Identifier($s)};
+
+
+identifier = (letter symbol*) $s {Identifier($s)};
 type = "INT"$t {Type($t)} | "ARRAY OF INT"$t {Type($t)};
 
 symbol = letter | digit | "_";

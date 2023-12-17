@@ -11,9 +11,10 @@ ArExpr ::= ArSum, ArMult, ArSub, ArDiv, ArInt, ArMod, Identifier;
 	Identifier(id : string);
 
 
-Statement ::= VarAssign, VarDecl;
+Statement ::= VarAssign, VarDecl, Test;
 	VarAssign(id : Identifier, expr : ArExpr);
 	VarDecl(id : Identifier, type : Type);
+	Test(expr : ArExpr);
 
 Type(t : string);
 
@@ -45,6 +46,9 @@ state2s (s : Statement) -> string {
 		}
 		VarDecl(id, type): {
 			"VarDecl(" + id2s(id) + ", " + type2s(type) + ")"
+		}
+		Test(e): {
+			"Test(" + ar2s(e) + ")"
 		}
 	}
 }
@@ -112,9 +116,10 @@ s2block(str : string) -> Block {
 main() -> int {
 	ar = s2block("{ 
 		VAR x: INT;
-		VAR x: INT; 
+		VAR y: INT; 
 		x := (( (4 - 5 ) * ( 18 + 3)) + ((eee % 2) / 5));	
 		y := 131;
+		(x * 5)?;
 	}");
 
 	println("Raw AST:");
