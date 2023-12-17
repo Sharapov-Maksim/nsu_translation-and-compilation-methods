@@ -1,23 +1,29 @@
 import lingo/pegcode/driver;
 
 
-ArExpr ::= ArSum, ArMult, ArInt, Identifier;
+ArExpr ::= ArSum, ArMult, ArSub, ArDiv, ArInt, ArMod, Identifier;
 	ArSum(lhs : ArExpr, rhs : ArExpr);
 	ArMult(lhs : ArExpr, rhs : ArExpr);
+	ArSub(lhs : ArExpr, rhs : ArExpr);
+	ArDiv(lhs : ArExpr, rhs : ArExpr);
+	ArMod(lhs : ArExpr, rhs : ArExpr);
 	ArInt(x : int);
 	Identifier(id : string);
 
 
-Statement ::= VarAssign;
+Statement ::= VarAssign, VarDecl;
 	VarAssign(id : Identifier, expr : ArExpr);
 	VarDecl(id : Identifier, type : Type);
-	Type(t : string);
+
+Type(t : string);
 
 Block(stmts : [Statement]);
 
 block2s (b : Block) -> string {
+	println("Start block");
 	switch (b : Block) {
 		Block(stmts): {
+			println("2 block");
 			"Block(" + stmts2s(stmts) + ")"
 		}
 	}
@@ -36,6 +42,17 @@ state2s (s : Statement) -> string {
 	switch (s : Statement) {
 		VarAssign(id, expr): {
 			"Assign(" + id2s(id) + ", " + ar2s(expr) + ")"
+		}
+		VarDecl(id, type): {
+			"VarDecl(" + id2s(id) + ", " + type2s(type) + ")"
+		}
+	}
+}
+
+type2s (type : Type) -> string {
+	switch (type : Type) {
+		Type(val): {
+			"Type(" + val + ")"
 		}
 	}
 }
@@ -56,21 +73,17 @@ ar2s (e : ArExpr) -> string {
 		ArMult(lhs, rhs): {
 			"ArMult(" + ar2s(lhs) + ", " + ar2s(rhs) + ")";
 		};
+		ArSub(lhs, rhs): {
+			"ArSub(" + ar2s(lhs) + ", " + ar2s(rhs) + ")";
+		};
+		ArDiv(lhs, rhs): {
+			"ArDiv(" + ar2s(lhs) + ", " + ar2s(rhs) + ")";
+		};
+		ArMod(lhs, rhs): {
+			"ArMod(" + ar2s(lhs) + ", " + ar2s(rhs) + ")";
+		};
 		ArInt(x): { i2s(x) };
 		Identifier(id) : { id2s(e) }
-	}
-}
-
-ar2i (e : ArExpr) -> int {
-	switch (e : ArExpr) {
-		ArSum(lhs, rhs): {
-			ar2i(lhs) + ar2i(rhs);
-		};
-		ArMult(lhs, rhs): {
-			ar2i(lhs) * ar2i(rhs);
-		};
-		ArInt(x): {x};
-		Identifier(id): {100000}
 	}
 }
 
@@ -97,10 +110,16 @@ s2block(str : string) -> Block {
 
 
 main() -> int {
-	ar = s2block("{x := ((( 4 + 5 ) * ( 18  + 3) ) + eee);}");
-	
-	// println("Arithmetic result: " + i2s(ar2i(ar)));
-	
+	ar = s2block("{ 
+		VAR x: INT;
+		VAR x: INT; 
+		x := (( (4 - 5 ) * ( 18 + 3)) + ((eee % 2) / 5));	
+		y := 131;
+	}");
+
+	println("Raw AST:");
+	println(ar);
+
 	println("AST: " + block2s(ar));
 
 	0;

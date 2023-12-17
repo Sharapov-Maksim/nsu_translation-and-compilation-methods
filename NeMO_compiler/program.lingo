@@ -6,16 +6,19 @@ STATEMENT = STATEMENT_BODY;
 STATEMENT_BODY = (var_assign | var_decl);
 
 var_assign = identifier:id ":=" EXPR:e ";" {VarAssign(:id, :e)} ; // TODO move ";"
-var_decl = "VAR" identifier:id ":" ws type:t ws ";" {VarDecl(:id, :t)}; 
+var_decl = ws "VAR" identifier:id ":" ws type:t ws ";" {VarDecl(:id, :t)} ; 
 
-EXPR = sum | mul | int | identifier;
+EXPR = sum | mul | sub | div | mod | int | identifier;
 sum = ws "(" EXPR:l "+" EXPR:r ")" ws {ArSum(:l, :r)};
 mul = ws "(" EXPR:l "*" EXPR:r ")" ws {ArMult(:l, :r)};
+sub = ws "(" EXPR:l "-" EXPR:r ")" ws {ArSub(:l, :r)};
+div = ws "(" EXPR:l "/" EXPR:r ")" ws {ArDiv(:l, :r)};
+mod = ws "(" EXPR:l "%" EXPR:r ")" ws {ArMod(:l, :r)};
 int = ws digit+ $s ws { ArInt(s2i($s))};
 
 
 identifier = ws (letter symbol*) $s ws {Identifier($s)};
-type = "INT" | "ARRAY OF INT";
+type = "INT"$t {Type($t)} | "ARRAY OF INT"$t {Type($t)};
 
 symbol = letter | digit | "_";
 letter = letterLower | letterUpper;
