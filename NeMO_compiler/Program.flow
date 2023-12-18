@@ -1,13 +1,14 @@
 import lingo/pegcode/driver;
 
 
-ArExpr ::= ArSum, ArMult, ArSub, ArDiv, ArInt, ArMod, Identifier;
+ArExpr ::= ArSum, ArMult, ArSub, ArDiv, ArInt, ArrInt, ArMod, Identifier;
 	ArSum(lhs : ArExpr, rhs : ArExpr);
 	ArMult(lhs : ArExpr, rhs : ArExpr);
 	ArSub(lhs : ArExpr, rhs : ArExpr);
 	ArDiv(lhs : ArExpr, rhs : ArExpr);
 	ArMod(lhs : ArExpr, rhs : ArExpr);
 	ArInt(x : int);
+	ArrInt(f : ArInt, arr: [ArInt]);
 	Identifier(id : string);
 
 
@@ -87,6 +88,7 @@ ar2s (e : ArExpr) -> string {
 			"ArMod(" + ar2s(lhs) + ", " + ar2s(rhs) + ")";
 		};
 		ArInt(x): { i2s(x) };
+		ArrInt(first, arr): { ar2s(first) + ", ..." };
 		Identifier(id) : { id2s(e) }
 	}
 }
@@ -118,7 +120,7 @@ main() -> int {
 		VAR x: INT;
 		VAR y: INT; 
 		x := (( (4 - 5 ) * ( 18 + 3)) + ((eee % 2) / 5));	
-		y := 131;
+		y := [1, 2, 3];
 		(x * 5)?;
 	}"
 

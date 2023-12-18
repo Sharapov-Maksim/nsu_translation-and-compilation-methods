@@ -10,16 +10,17 @@ var_decl = "VAR" ws identifier:id ws ":" ws type:t ws ";" {debug(VarDecl(:id, :t
 test = EXPR:e ws "?" ws ";" {debug(Test(:e))} ;
 
 
-EXPR = sum | mul | sub | div | mod | int | identifier;
+EXPR = sum | mul | sub | div | mod | int | arr_int | identifier;
 sum = "(" ws EXPR:l ws "+" ws EXPR:r ws ")" {ArSum(:l, :r)};
 mul = "(" ws EXPR:l ws "*" ws EXPR:r ws ")" {ArMult(:l, :r)};
 sub = "(" ws EXPR:l ws "-" ws EXPR:r ws ")" {ArSub(:l, :r)};
 div = "(" ws EXPR:l ws "/" ws EXPR:r ws ")" {ArDiv(:l, :r)};
 mod = "(" ws EXPR:l ws "%" ws EXPR:r ws ")" {ArMod(:l, :r)};
+
+
+arr_int = "[" int:f (arr_sec)?:arr "]" {debug(ArrInt(:f, :arr))} ;
+arr_sec = (ws "," ws int)* ;
 int = digit+ $s { ArInt(s2i($s))};
-
-
-
 
 identifier = (letter symbol*) $s {Identifier($s)};
 type = "INT"$t {Type($t)} | "ARRAY OF INT"$t {Type($t)};
