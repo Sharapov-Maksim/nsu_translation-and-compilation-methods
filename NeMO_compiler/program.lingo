@@ -1,13 +1,13 @@
 
 
-block = "{" (ws STATEMENT)*:stmts ws "}" {Block(:stmts)};
+block = "{" (ws STATEMENT)*:stmts ws "}" {debug(Block(:stmts))};
 
 STATEMENT = STATEMENT_BODY ;
 STATEMENT_BODY = (var_assign | var_decl | test) ;
 
-var_assign = identifier:id ws ":=" ws EXPR:e ws ";" {VarAssign(:id, :e)} ; // TODO move ";"
-var_decl = "VAR" ws identifier:id ws ":" ws type:t ws ";" {VarDecl(:id, :t)} ; 
-test = EXPR:e ws "?" ws ";" {Test(:e)} ;
+var_assign = identifier:id ws ":=" ws EXPR:e ws ";" {debug(VarAssign(:id, :e))} ; // TODO move ";"
+var_decl = "VAR" ws identifier:id ws ":" ws type:t ws ";" {debug(VarDecl(:id, :t))} ; 
+test = EXPR:e ws "?" ws ";" {debug(Test(:e))} ;
 
 
 EXPR = sum | mul | sub | div | mod | int | identifier;

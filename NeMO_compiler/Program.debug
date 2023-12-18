@@ -752,25 +752,25 @@
 58908 id2s$init
 58913 s2block$init
 58930 s2block
-60034 s2block$init
-60039 type2s$init
-60055 type2s
-60126 type2s$init
-60131 ar2s$init
-60145 ar2s
-60718 ar2s$init
-60723 state2s$init
-60740 state2s
-61009 state2s$init
-61014 stmts2s$init
-61031 stmts2s
-61160 stmts2s$init
-61165 block2s$init
-61182 block2s
-61315 block2s$init
-61320 main$init
-61334 main
-61550 main$init
+60076 s2block$init
+60081 type2s$init
+60097 type2s
+60168 type2s$init
+60173 ar2s$init
+60187 ar2s
+60760 ar2s$init
+60765 state2s$init
+60782 state2s
+61051 state2s$init
+61056 stmts2s$init
+61073 stmts2s
+61202 stmts2s$init
+61207 block2s$init
+61224 block2s
+61357 block2s$init
+61362 main$init
+61376 main
+61602 main$init
 
 0 C:/projects/flow9/lib/ds/tuples.flow 7 1
 39 C:/projects/flow9/lib/ds/tuples.flow 3 1
@@ -6468,150 +6468,151 @@
 58913 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 105 0
 58930 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 106 1
 58939 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 106 8
-60002 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 107 1
-60007 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 108 2
-60013 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 109 2
-60018 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 110 2
-60023 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 107 1
-60033 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 111 0
-60039 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 56 0
-60055 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 57 1
-60064 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 57 9
-60087 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 58 2
-60102 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 59 3
-60114 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 59 13
-60120 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 59 19
-60125 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 60 0
-60131 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 72 0
-60145 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 73 1
-60154 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 73 9
-60225 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 83 2
-60240 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 83 2
-60255 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 84 3
-60269 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 84 14
-60274 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 84 14
-60281 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 84 26
-60288 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 84 33
-60293 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 84 33
-60300 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 84 45
-60310 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 89 2
-60325 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 89 14
-60330 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 89 14
-60345 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 86 2
-60360 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 86 2
-60375 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 87 3
-60389 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 87 14
-60394 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 87 14
-60401 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 87 26
-60408 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 87 33
-60413 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 87 33
-60420 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 87 45
-60430 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 77 2
-60445 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 77 2
-60460 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 78 3
-60476 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 78 15
-60481 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 78 15
-60488 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 78 27
-60495 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 78 34
-60500 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 78 34
-60507 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 78 46
-60517 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 80 2
-60532 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 80 2
-60547 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 81 3
-60561 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 81 14
-60566 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 81 14
-60573 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 81 26
-60580 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 81 33
-60585 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 81 33
-60592 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 81 45
-60602 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 74 2
-60617 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 74 2
-60632 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 75 3
-60646 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 75 14
-60651 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 75 14
-60658 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 75 26
-60665 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 75 33
-60670 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 75 33
-60677 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 75 45
-60687 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 90 2
-60702 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 90 21
-60707 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 90 21
-60717 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 91 0
-60723 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 42 0
-60740 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 43 1
-60749 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 43 9
-60788 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 50 2
-60803 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 51 3
-60815 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 51 13
-60820 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 51 13
-60827 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 51 23
-60837 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 44 2
-60852 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 44 2
-60867 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 45 3
-60883 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 45 15
-60888 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 45 15
-60895 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 45 26
-60902 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 45 33
-60907 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 45 33
-60914 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 45 46
-60924 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 47 2
-60939 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 47 2
-60954 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 48 3
-60972 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 48 16
-60977 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 48 16
-60984 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 48 27
-60991 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 48 34
-60996 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 48 34
-61003 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 48 49
-61008 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 52 0
-61014 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 33 0
-61031 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 34 1
-61040 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 34 5
-61045 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 34 5
-61051 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 34 22
-61062 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 35 2
-61069 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 36 10
-61074 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 36 10
-61080 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 36 27
-61091 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 37 2
-61096 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 37 16
-61102 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 37 2
-61117 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 39 2
-61122 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 39 16
-61128 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 39 2
-61134 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 39 22
-61141 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 39 29
-61146 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 39 37
-61152 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 39 29
-61159 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 40 0
-61165 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 23 0
-61182 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 23 30
-61191 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 24 1
-61215 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 24 1
-61222 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 25 9
-61245 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 26 2
-61260 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 27 3
-61276 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 27 3
-61283 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 28 3
-61297 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 28 14
-61302 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 28 14
-61309 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 28 31
-61314 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 29 0
-61320 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 116 0
-61334 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 117 1
-61343 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 117 6
-61465 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 117 6
-61476 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 125 1
-61494 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 125 1
-61501 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 126 1
-61506 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 126 1
-61513 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 128 1
-61525 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 128 19
-61530 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 128 19
-61537 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 128 1
-61544 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 130 1
-61549 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 131 0
-61574 --end-- 0 -1
+60044 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 107 1
+60049 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 108 2
+60055 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 109 2
+60060 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 110 2
+60065 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 107 1
+60075 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 111 0
+60081 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 56 0
+60097 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 57 1
+60106 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 57 9
+60129 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 58 2
+60144 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 59 3
+60156 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 59 13
+60162 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 59 19
+60167 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 60 0
+60173 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 72 0
+60187 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 73 1
+60196 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 73 9
+60267 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 83 2
+60282 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 83 2
+60297 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 84 3
+60311 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 84 14
+60316 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 84 14
+60323 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 84 26
+60330 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 84 33
+60335 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 84 33
+60342 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 84 45
+60352 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 89 2
+60367 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 89 14
+60372 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 89 14
+60387 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 86 2
+60402 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 86 2
+60417 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 87 3
+60431 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 87 14
+60436 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 87 14
+60443 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 87 26
+60450 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 87 33
+60455 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 87 33
+60462 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 87 45
+60472 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 77 2
+60487 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 77 2
+60502 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 78 3
+60518 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 78 15
+60523 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 78 15
+60530 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 78 27
+60537 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 78 34
+60542 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 78 34
+60549 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 78 46
+60559 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 80 2
+60574 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 80 2
+60589 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 81 3
+60603 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 81 14
+60608 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 81 14
+60615 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 81 26
+60622 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 81 33
+60627 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 81 33
+60634 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 81 45
+60644 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 74 2
+60659 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 74 2
+60674 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 75 3
+60688 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 75 14
+60693 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 75 14
+60700 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 75 26
+60707 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 75 33
+60712 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 75 33
+60719 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 75 45
+60729 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 90 2
+60744 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 90 21
+60749 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 90 21
+60759 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 91 0
+60765 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 42 0
+60782 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 43 1
+60791 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 43 9
+60830 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 50 2
+60845 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 51 3
+60857 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 51 13
+60862 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 51 13
+60869 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 51 23
+60879 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 44 2
+60894 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 44 2
+60909 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 45 3
+60925 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 45 15
+60930 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 45 15
+60937 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 45 26
+60944 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 45 33
+60949 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 45 33
+60956 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 45 46
+60966 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 47 2
+60981 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 47 2
+60996 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 48 3
+61014 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 48 16
+61019 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 48 16
+61026 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 48 27
+61033 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 48 34
+61038 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 48 34
+61045 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 48 49
+61050 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 52 0
+61056 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 33 0
+61073 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 34 1
+61082 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 34 5
+61087 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 34 5
+61093 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 34 22
+61104 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 35 2
+61111 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 36 10
+61116 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 36 10
+61122 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 36 27
+61133 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 37 2
+61138 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 37 16
+61144 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 37 2
+61159 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 39 2
+61164 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 39 16
+61170 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 39 2
+61176 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 39 22
+61183 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 39 29
+61188 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 39 37
+61194 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 39 29
+61201 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 40 0
+61207 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 23 0
+61224 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 23 30
+61233 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 24 1
+61257 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 24 1
+61264 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 25 9
+61287 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 26 2
+61302 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 27 3
+61318 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 27 3
+61325 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 28 3
+61339 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 28 14
+61344 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 28 14
+61351 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 28 31
+61356 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 29 0
+61362 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 116 0
+61376 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 117 1
+61385 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 117 5
+61512 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 127 6
+61517 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 127 6
+61528 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 129 1
+61546 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 129 1
+61553 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 130 1
+61558 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 130 1
+61565 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 132 1
+61577 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 132 19
+61582 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 132 19
+61589 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 132 1
+61596 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 134 1
+61601 C:/projects/flow9/education/nsu_translation-and-compilation-methods/NeMO_compiler/Program.flow 135 0
+61626 --end-- 0 -1
 
 L 4025 1 0 x
 L 4025 1 1 y
@@ -7612,19 +7613,20 @@ L 58841 0 1 val
 L 58841 1 0 id
 L 58930 0 1 e_gr
 L 58930 1 0 str
-L 60055 0 1 val
-L 60055 1 0 type
-L 60145 0 1 lhs
-L 60145 0 2 rhs
-L 60145 0 3 x
-L 60145 0 4 id
-L 60145 1 0 e
-L 60740 0 1 e
-L 60740 0 2 id
-L 60740 0 3 expr
-L 60740 0 4 type
-L 60740 1 0 s
-L 61031 1 0 stmts
-L 61182 0 1 stmts
-L 61182 1 0 b
-L 61334 0 0 ar
+L 60097 0 1 val
+L 60097 1 0 type
+L 60187 0 1 lhs
+L 60187 0 2 rhs
+L 60187 0 3 x
+L 60187 0 4 id
+L 60187 1 0 e
+L 60782 0 1 e
+L 60782 0 2 id
+L 60782 0 3 expr
+L 60782 0 4 type
+L 60782 1 0 s
+L 61073 1 0 stmts
+L 61224 0 1 stmts
+L 61224 1 0 b
+L 61376 0 0 s
+L 61376 0 1 ar

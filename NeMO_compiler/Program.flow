@@ -114,13 +114,17 @@ s2block(str : string) -> Block {
 
 
 main() -> int {
-	ar = s2block("{ 
+	s = "{ 
 		VAR x: INT;
 		VAR y: INT; 
 		x := (( (4 - 5 ) * ( 18 + 3)) + ((eee % 2) / 5));	
 		y := 131;
 		(x * 5)?;
-	}");
+	}"
+
+	// println(matchLingo("#include education/nsu_translation-and-compilation-methods/NeMo_compiler/program.lingo", s));
+
+	ar = s2block(s);
 
 	println("Raw AST:");
 	println(ar);
