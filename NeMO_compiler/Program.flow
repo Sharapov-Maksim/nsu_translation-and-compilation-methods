@@ -1,6 +1,11 @@
 import lingo/pegcode/driver;
 
 
+Program (d : Declarations, b : Block) ;
+Declarations(decls : [VarDecl]) ;
+Block(stmts : [Statement]) ;
+UndetermChoice(blocks : [Block]) ; 
+
 ArExpr ::= ArSum, ArMult, ArSub, ArDiv, ArInt, ArrInt, ArMod, Identifier;
 	ArSum(lhs : ArExpr, rhs : ArExpr);
 	ArMult(lhs : ArExpr, rhs : ArExpr);
@@ -8,24 +13,23 @@ ArExpr ::= ArSum, ArMult, ArSub, ArDiv, ArInt, ArrInt, ArMod, Identifier;
 	ArDiv(lhs : ArExpr, rhs : ArExpr);
 	ArMod(lhs : ArExpr, rhs : ArExpr);
 	ArInt(x : int);
-	ArrInt(f : ArInt, arr: [ArInt]);
+	ArrInt(arr: [ArInt]);
 	Identifier(id : string);
 
 
-Statement ::= VarAssign, VarDecl, Test;
+Statement ::= VarAssign, Test;
 	VarAssign(id : Identifier, expr : ArExpr);
-	VarDecl(id : Identifier, type : Type);
 	Test(expr : ArExpr);
+
+VarDecl(id : Identifier, type : Type);
 
 Type(t : string);
 
-Block(stmts : [Statement]);
+
 
 block2s (b : Block) -> string {
-	println("Start block");
 	switch (b : Block) {
 		Block(stmts): {
-			println("2 block");
 			"Block(" + stmts2s(stmts) + ")"
 		}
 	}
@@ -40,13 +44,35 @@ stmts2s (stmts : [Statement]) -> string {
 		state2s(stmts[0]) + ", " + stmts2s(tail(stmts))
 }
 
+declarations2s (decls : Declarations) {
+	switch (decls : Declarations) {
+		Declarations(x): {
+			"Declarations(" + decls2s(x) + ")";
+		}
+	}
+}
+
+decls2s (stmts : [VarDecl]) -> string {
+	if (length(stmts) == 0) 
+		""
+	else if (length(stmts) == 1)
+		decl2s(stmts[0])
+	else
+		decl2s(stmts[0]) + ", " + decls2s(tail(stmts))
+}
+
+decl2s (d : VarDecl) -> string {
+	switch (d : VarDecl) {
+		VarDecl(id, type): {
+			"VarDecl(" + id2s(id) + ", " + type2s(type) + ")"
+		}
+	}
+}
+
 state2s (s : Statement) -> string {
 	switch (s : Statement) {
 		VarAssign(id, expr): {
 			"Assign(" + id2s(id) + ", " + ar2s(expr) + ")"
-		}
-		VarDecl(id, type): {
-			"VarDecl(" + id2s(id) + ", " + type2s(type) + ")"
 		}
 		Test(e): {
 			"Test(" + ar2s(e) + ")"
@@ -88,7 +114,7 @@ ar2s (e : ArExpr) -> string {
 			"ArMod(" + ar2s(lhs) + ", " + ar2s(rhs) + ")";
 		};
 		ArInt(x): { i2s(x) };
-		ArrInt(first, arr): { ar2s(first) + ", ..." };
+		ArrInt(arr): { "UNSUPPORTED" };
 		Identifier(id) : { id2s(e) }
 	}
 }
@@ -116,12 +142,17 @@ s2block(str : string) -> Block {
 
 
 main() -> int {
-	s = "{ 
-		VAR x: INT;
-		VAR y: INT; 
+	s = "
+	VAR x: INT;
+	VAR y: INT; 
+	{ 
 		x := (( (4 - 5 ) * ( 18 + 3)) + ((eee % 2) / 5));	
 		y := [1, 2, 3];
+		y := [];
 		(x * 5)?;
+		{
+			{x := 4;} U {x := 3;}
+		}
 	}"
 
 	// println(matchLingo("#include education/nsu_translation-and-compilation-methods/NeMo_compiler/program.lingo", s));
@@ -131,7 +162,7 @@ main() -> int {
 	println("Raw AST:");
 	println(ar);
 
-	println("AST: " + block2s(ar));
+	//println("AST: " + block2s(ar));
 
 	0;
 }

@@ -1,14 +1,17 @@
 
+program = declarations:d ws block:b {Program (:d, :b)};
 
+declarations = (ws var_decl)*:decls {debug(Declarations(:decls))};
+// block = sequence
 block = "{" (ws STATEMENT)*:stmts ws "}" {debug(Block(:stmts))};
 
 STATEMENT = STATEMENT_BODY ;
-STATEMENT_BODY = (var_assign | var_decl | test) ;
+STATEMENT_BODY = (var_assign | test | undeterm_choice) ;
 
-var_assign = identifier:id ws ":=" ws EXPR:e ws ";" {debug(VarAssign(:id, :e))} ; // TODO move ";"
+var_assign = identifier:id ws ":=" ws EXPR:e ws ";" {debug(VarAssign(:id, :e))} ;
 var_decl = "VAR" ws identifier:id ws ":" ws type:t ws ";" {debug(VarDecl(:id, :t))} ; 
 test = EXPR:e ws "?" ws ";" {debug(Test(:e))} ;
-
+undeterm_choice = "{" ws block:first (ws "U" ws block)*:tail ws"}" {UndetermChoice(consArray(:first, :tail))} ;
 
 EXPR = sum | mul | sub | div | mod | int | arr_int | identifier;
 sum = "(" ws EXPR:l ws "+" ws EXPR:r ws ")" {ArSum(:l, :r)};
@@ -18,8 +21,11 @@ div = "(" ws EXPR:l ws "/" ws EXPR:r ws ")" {ArDiv(:l, :r)};
 mod = "(" ws EXPR:l ws "%" ws EXPR:r ws ")" {ArMod(:l, :r)};
 
 
-arr_int = "[" int:f (arr_sec)?:arr "]" {debug(ArrInt(:f, :arr))} ;
+arr_int = arr_empty:seq | "[" ws arr_seq:seq ws "]" { :seq } ;
+arr_empty = "[" ws "]" { ArrInt(emtyArray()) } ;
+arr_seq = int:first (ws "," ws int)*:tail { ArrInt(consArray(:first, :tail)) } ;
 arr_sec = (ws "," ws int)* ;
+
 int = digit+ $s { ArInt(s2i($s))};
 
 identifier = (letter symbol*) $s {Identifier($s)};
