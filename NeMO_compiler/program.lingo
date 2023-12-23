@@ -3,10 +3,11 @@ program = declarations:d ws block:b {Program (:d, :b)};
 
 declarations = (ws var_decl)*:decls {debug(Declarations(:decls))};
 // block = sequence
+undeterm_iteration = block:b "*" {debug(UndetermIteration(:b))} ;
 block = "{" (ws STATEMENT)*:stmts ws "}" {debug(Block(:stmts))};
 
 STATEMENT = STATEMENT_BODY ;
-STATEMENT_BODY = (var_assign | test | undeterm_choice) ;
+STATEMENT_BODY = (var_assign | test | undeterm_choice | undeterm_iteration) ;
 
 var_assign = identifier:id ws ":=" ws EXPR:e ws ";" {debug(VarAssign(:id, :e))} ;
 var_decl = "VAR" ws identifier:id ws ":" ws type:t ws ";" {debug(VarDecl(:id, :t))} ; 

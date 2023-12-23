@@ -5,6 +5,7 @@ Program (d : Declarations, b : Block) ;
 Declarations(decls : [VarDecl]) ;
 Block(stmts : [Statement]) ;
 UndetermChoice(blocks : [Block]) ; 
+UndetermIteration(block : Block) ; 
 
 ArExpr ::= ArSum, ArMult, ArSub, ArDiv, ArInt, ArrInt, ArMod, Identifier;
 	ArSum(lhs : ArExpr, rhs : ArExpr);
@@ -72,10 +73,10 @@ decl2s (d : VarDecl) -> string {
 state2s (s : Statement) -> string {
 	switch (s : Statement) {
 		VarAssign(id, expr): {
-			"Assign(" + id2s(id) + ", " + ar2s(expr) + ")"
+			"Assign(" + id2s(id) + ", " + expr2s(expr) + ")"
 		}
 		Test(e): {
-			"Test(" + ar2s(e) + ")"
+			"Test(" + expr2s(e) + ")"
 		}
 	}
 }
@@ -96,22 +97,22 @@ id2s (id : Identifier) -> string {
 	}
 }
 
-ar2s (e : ArExpr) -> string {
+expr2s (e : ArExpr) -> string {
 	switch (e : ArExpr) {
 		ArSum(lhs, rhs): {
-			"ArSum(" + ar2s(lhs) + ", " + ar2s(rhs) + ")";
+			"ArSum(" + expr2s(lhs) + ", " + expr2s(rhs) + ")";
 		};
 		ArMult(lhs, rhs): {
-			"ArMult(" + ar2s(lhs) + ", " + ar2s(rhs) + ")";
+			"ArMult(" + expr2s(lhs) + ", " + expr2s(rhs) + ")";
 		};
 		ArSub(lhs, rhs): {
-			"ArSub(" + ar2s(lhs) + ", " + ar2s(rhs) + ")";
+			"ArSub(" + expr2s(lhs) + ", " + expr2s(rhs) + ")";
 		};
 		ArDiv(lhs, rhs): {
-			"ArDiv(" + ar2s(lhs) + ", " + ar2s(rhs) + ")";
+			"ArDiv(" + expr2s(lhs) + ", " + expr2s(rhs) + ")";
 		};
 		ArMod(lhs, rhs): {
-			"ArMod(" + ar2s(lhs) + ", " + ar2s(rhs) + ")";
+			"ArMod(" + expr2s(lhs) + ", " + expr2s(rhs) + ")";
 		};
 		ArInt(x): { i2s(x) };
 		ArrInt(arr): { "UNSUPPORTED" };
@@ -153,6 +154,8 @@ main() -> int {
 		{
 			{x := 4;} U {x := 3;}
 		}
+
+		{ x := 145; }*
 	}"
 
 	// println(matchLingo("#include education/nsu_translation-and-compilation-methods/NeMo_compiler/program.lingo", s));
@@ -166,3 +169,16 @@ main() -> int {
 
 	0;
 }
+
+
+statementToVM (s : Statement, label : int, next : int) -> string {
+	switch (s : Statement) {
+		VarAssign(id, expr): {
+			i2s(label) + ": " + id2s(id) + " := " + expr2s(expr) + " goto {" + i2s(next) + "}"
+		}
+		Test(e): {
+			i2s(label) + ": if(" + expr2s(e) + ") then {" + i2s(next) + "} else {}" 
+		}
+	}
+}
+
