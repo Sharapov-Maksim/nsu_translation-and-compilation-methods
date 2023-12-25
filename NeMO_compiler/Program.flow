@@ -211,7 +211,9 @@ main() -> int {
 		(x * 5)?;
 
 		{ x := 145; }*
-		
+		{
+			{x := 4;} U {x := 3;}
+		}
 	}"
 
 	// println(matchLingo("#include education/nsu_translation-and-compilation-methods/NeMo_compiler/program.lingo", s));
@@ -242,7 +244,7 @@ statementsToVM (stmts : [Statement], current_pos: int, jump_back_to: int) -> Cod
 	}
 	else {
 		code = statementToVM(stmts[0], current_pos, current_pos + 1); 
-		code_tail = statementsToVM(tail(stmts), current_pos + 1, jump_back_to);
+		code_tail = statementsToVM(tail(stmts), current_pos + code.len, jump_back_to);
 		Code(code.s + code_tail.s, code.len + code_tail.len)
 	}
 }
@@ -270,20 +272,39 @@ statementToVM (s : Statement, label : int, next : int) -> Code {
 			Code(res.s, res.len)
 		}
 		UndetermChoice(blocks): {
-			Code("", 0)
+			len_arr = map(blocks, \b -> blockToVM(b, 0, -1).len); // dummy codegen to count blocks length
+			blocks_len = fold(len_arr, 0, \acc,len -> acc + len);
+			println(blocks_len);
+			block_labels = constructLabelsForBlocks(label+1, len_arr);
+			label_after_choice = label + 1 + blocks_len;
+			code_arr = mapi(blocks, \i,b -> blockToVM(b, block_labels[i], label_after_choice));
+			wrapperStr = undeterministicChoiceWrapper(label, block_labels);
+			Code(wrapperStr + strGlue(map(code_arr, \code -> code.s), ""), blocks_len + 1)
 		}
 		UndetermIteration(block): {
 			code = blockToVM(block, label+1, label);
 			wrapperStr = undeterministicIterationWrapper(label, code.len);
-			println(code.len + 1);
 			Code(wrapperStr + code.s, code.len + 1);
 		}
 	}
 }
 
-undeterministicIterationWrapper(label: int, length_of_wrapped_block) -> string {
+undeterministicIterationWrapper(label: int, length_of_wrapped_block: int) -> string {
 	i2s(label) + ": if TRUE then goto {" + i2s(label+1) + ", " + i2s(label + 1 + length_of_wrapped_block) + "}\n"
 }
+
+undeterministicChoiceWrapper(label: int, label_arr: [int]) -> string {
+	i2s(label) + ": if TRUE then goto {" + strGlue(map(label_arr, i2s), ", ") + "}\n"
+}
+
+constructLabelsForBlocks(start: int, len_arr: [int]) -> [int] {
+	if (length(len_arr) == 0) {
+		[]
+	} else {
+		concat([start],constructLabelsForBlocks(start+len_arr[0], tail(len_arr)))
+	}
+}
+
 
 varDeclToVM (d : VarDecl) -> string {
 	switch (d : VarDecl) {
