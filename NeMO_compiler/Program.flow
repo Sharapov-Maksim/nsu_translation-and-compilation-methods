@@ -233,37 +233,48 @@ main() -> int {
 Code (s : string, len : int);
 CodeBlock (s : string, len : int);
 
-statementsToVM (stmts : [Statement], current_pos: int, jump_back_to: int) -> string {
+statementsToVM (stmts : [Statement], current_pos: int, jump_back_to: int) -> Code {
 	if (length(stmts) == 0) 
-		""
+		Code("", 0)
 	else if (length(stmts) == 1) {
 		if (jump_back_to == -1) {
-			statementToVM(stmts[0], current_pos, current_pos + 1)
+			statementToVM(stmts[0], current_pos, -1)
 		} else {
 			statementToVM(stmts[0], current_pos, jump_back_to)
 		}
 	}
-	else
-		statementToVM(stmts[0], current_pos, current_pos + 1) + 
-			statementsToVM(tail(stmts), current_pos + 1, jump_back_to)
+	else {
+		code = statementToVM(stmts[0], current_pos, current_pos + 1); 
+		code_tail = statementsToVM(tail(stmts), current_pos + 1, jump_back_to);
+		Code(code.s + code_tail.s, code.len + code_tail.len)
+	}
 }
 
-statementToVM (s : Statement, label : int, next : int) -> string {
+statementToVM (s : Statement, label : int, next : int) -> Code {
 	switch (s : Statement) {
 		VarAssign(id, expr): {
-			i2s(label) + ": " + id2s(id) + " := " + expr2s(expr) + " goto {" + i2s(next) + "}\n"
+			if (next == -1) {
+				Code (i2s(label) + ": " + id2s(id) + " := " + expr2s(expr) + " goto {" + i2s(label + 1) + "}\n", 1)
+			} else {
+				Code (i2s(label) + ": " + id2s(id) + " := " + expr2s(expr) + " goto {" + i2s(next) + "}\n", 1)
+			}
 		}
 		Test(e): {
-			i2s(label) + ": if(" + expr2s(e) + ") then {" + i2s(next) + "} else {}\n" 
+			if (next == -1) {
+				Code(i2s(label) + ": if(" + expr2s(e) + ") then {" + i2s(label + 1) + "} else {}\n", 1)
+			} else {
+				Code(i2s(label) + ": if(" + expr2s(e) + ") then {" + i2s(next) + "} else {}\n", 1)
+			}
 		}
 		Block(statements): {
-			statementsToVM(statements, label, -1)
+			res = statementsToVM(statements, label, -1);
+			Code(res.s, res.len)
 		}
 		UndetermChoice(blocks): {
-			""
+			Code("", 0)
 		}
 		UndetermIteration(block): {
-			""
+			Code("", 0)
 		}
 	}
 }
@@ -278,11 +289,11 @@ varDeclToVM (d : VarDecl) -> string {
 
 
 
-blockToVM (b : Block, start: int, ) -> CodeBlock {
+blockToVM (b : Block, start: int, jump_back_to: int) -> CodeBlock {
 	switch (b : Block) {
 		Block(stmts): {
-			//"Block(" + stmts2s(stmts) + ")";
-			CodeBlock(statementsToVM(stmts, start, -1), length(stmts));
+			code = statementsToVM(stmts, start, jump_back_to);
+			CodeBlock(code.s, code.len);
 		}
 	}
 }
@@ -306,7 +317,8 @@ declarationsToVM (decls: Declarations) -> string {
 programToVM (p : Program) -> string {
 	switch (p : Program) {
 		Program(declarations, block): {
-			declarationsToVM(declarations) + blockToVM(block, 0).s + "666: "
+			code_block = blockToVM(block, 0, -1);
+			declarationsToVM(declarations) + code_block.s + i2s(code_block.len) + ": "
 		}
 	}
 }
