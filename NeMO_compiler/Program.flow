@@ -3,9 +3,6 @@ import lingo/pegcode/driver;
 
 Program (d : Declarations, b : Block) ;
 Declarations(decls : [VarDecl]) ;
-Block(stmts : [Statement]) ;
-UndetermChoice(blocks : [Block]) ; 
-UndetermIteration(block : Block) ; 
 
 ArExpr ::= ArSum, ArMult, ArSub, ArDiv, ArInt, ArrInt, ArMod, Identifier;
 	ArSum(lhs : ArExpr, rhs : ArExpr);
@@ -18,9 +15,12 @@ ArExpr ::= ArSum, ArMult, ArSub, ArDiv, ArInt, ArrInt, ArMod, Identifier;
 	Identifier(id : string);
 
 
-Statement ::= VarAssign, Test;
+Statement ::= VarAssign, Test, Block, UndetermChoice, UndetermIteration;
 	VarAssign(id : Identifier, expr : ArExpr);
 	Test(expr : ArExpr);
+	Block(stmts : [Statement]) ;
+	UndetermChoice(blocks : [Block]) ; 
+	UndetermIteration(block : Block) ; 
 
 VarDecl(id : Identifier, type : Type);
 
@@ -78,6 +78,15 @@ state2s (s : Statement) -> string {
 		Test(e): {
 			"Test(" + expr2s(e) + ")"
 		}
+		Block(statements): {
+			""
+		}
+		UndetermChoice(blocks): {
+			""
+		}
+		UndetermIteration(block): {
+			""
+		}
 	}
 }
 
@@ -89,7 +98,7 @@ type2s (type : Type) -> string {
 	}
 }
 
-id2s (id : Identifier) -> string {
+id2ast (id : Identifier) -> string {
 	switch (id : Identifier) {
 		Identifier(val): {
 			"Id(" + val + ")"
@@ -97,25 +106,56 @@ id2s (id : Identifier) -> string {
 	}
 }
 
-expr2s (e : ArExpr) -> string {
+id2s (id : Identifier) -> string {
+	switch (id : Identifier) {
+		Identifier(val): {
+			"(" + val + ")"
+		}
+	}
+}
+
+expr2ast (e : ArExpr) -> string {
 	switch (e : ArExpr) {
 		ArSum(lhs, rhs): {
-			"ArSum(" + expr2s(lhs) + ", " + expr2s(rhs) + ")";
+			"ArSum(" + expr2ast(lhs) + ", " + expr2ast(rhs) + ")";
 		};
 		ArMult(lhs, rhs): {
-			"ArMult(" + expr2s(lhs) + ", " + expr2s(rhs) + ")";
+			"ArMult(" + expr2ast(lhs) + ", " + expr2ast(rhs) + ")";
 		};
 		ArSub(lhs, rhs): {
-			"ArSub(" + expr2s(lhs) + ", " + expr2s(rhs) + ")";
+			"ArSub(" + expr2ast(lhs) + ", " + expr2ast(rhs) + ")";
 		};
 		ArDiv(lhs, rhs): {
-			"ArDiv(" + expr2s(lhs) + ", " + expr2s(rhs) + ")";
+			"ArDiv(" + expr2ast(lhs) + ", " + expr2ast(rhs) + ")";
 		};
 		ArMod(lhs, rhs): {
-			"ArMod(" + expr2s(lhs) + ", " + expr2s(rhs) + ")";
+			"ArMod(" + expr2ast(lhs) + ", " + expr2ast(rhs) + ")";
 		};
 		ArInt(x): { i2s(x) };
 		ArrInt(arr): { "UNSUPPORTED" };
+		Identifier(id) : { id2s(e) }
+	}
+}
+
+expr2s (e : ArExpr) -> string {
+	switch (e : ArExpr) {
+		ArSum(lhs, rhs): {
+			"(" + expr2s(lhs) + " + " + expr2s(rhs) + ")";
+		};
+		ArMult(lhs, rhs): {
+			"(" + expr2s(lhs) + " * " + expr2s(rhs) + ")";
+		};
+		ArSub(lhs, rhs): {
+			"(" + expr2s(lhs) + " - " + expr2s(rhs) + ")";
+		};
+		ArDiv(lhs, rhs): {
+			"(" + expr2s(lhs) + " / " + expr2s(rhs) + ")";
+		};
+		ArMod(lhs, rhs): {
+			"(" + expr2s(lhs) + " % " + expr2s(rhs) + ")";
+		};
+		ArInt(x): { i2s(x) };
+		ArrInt(arr): { "UNSUPPORTED_ARR" };
 		Identifier(id) : { id2s(e) }
 	}
 }
@@ -131,7 +171,7 @@ s2statement(str : string) -> Statement {
 	)
 }
 
-s2block(str : string) -> Block {
+s2prog(str : string) -> Program {
 	e_gr = "#include education/nsu_translation-and-compilation-methods/NeMo_compiler/program.lingo";
 	parsic(
 		compilePegGrammar(e_gr), 
@@ -149,7 +189,7 @@ main() -> int {
 	{ 
 		x := (( (4 - 5 ) * ( 18 + 3)) + ((eee % 2) / 5));	
 		y := [1, 2, 3];
-		y := [];
+		
 		(x * 5)?;
 		{
 			{x := 4;} U {x := 3;}
@@ -160,25 +200,95 @@ main() -> int {
 
 	// println(matchLingo("#include education/nsu_translation-and-compilation-methods/NeMo_compiler/program.lingo", s));
 
-	ar = s2block(s);
+	ar = s2prog(s);
 
 	println("Raw AST:");
 	println(ar);
 
 	//println("AST: " + block2s(ar));
 
+	println(programToVM(ar));
+
 	0;
 }
 
+Code (s : string, len : int);
+CodeBlock (s : string, len : int);
+
+statementsToVM (stmts : [Statement], current_pos: int, jump_back_to: int) -> string {
+	if (length(stmts) == 0) 
+		""
+	else if (length(stmts) == 1) {
+		if (jump_back_to == -1) {
+			statementToVM(stmts[0], current_pos, current_pos + 1)
+		} else {
+			statementToVM(stmts[0], current_pos, jump_back_to)
+		}
+	}
+	else
+		statementToVM(stmts[0], current_pos, current_pos + 1) + 
+			statementsToVM(tail(stmts), current_pos + 1, jump_back_to)
+}
 
 statementToVM (s : Statement, label : int, next : int) -> string {
 	switch (s : Statement) {
 		VarAssign(id, expr): {
-			i2s(label) + ": " + id2s(id) + " := " + expr2s(expr) + " goto {" + i2s(next) + "}"
+			i2s(label) + ": " + id2s(id) + " := " + expr2s(expr) + " goto {" + i2s(next) + "}\n"
 		}
 		Test(e): {
-			i2s(label) + ": if(" + expr2s(e) + ") then {" + i2s(next) + "} else {}" 
+			i2s(label) + ": if(" + expr2s(e) + ") then {" + i2s(next) + "} else {}\n" 
+		}
+		Block(statements): {
+			statementsToVM(statements, label, -1)
+		}
+		UndetermChoice(blocks): {
+			""
+		}
+		UndetermIteration(block): {
+			""
 		}
 	}
 }
 
+varDeclToVM (d : VarDecl) -> string {
+	switch (d : VarDecl) {
+		VarDecl(id, type): {
+			"VAR " + id2s(id) + ": " + type2s(type) + ";\n"
+		}
+	}
+}
+
+
+
+blockToVM (b : Block, start: int, ) -> CodeBlock {
+	switch (b : Block) {
+		Block(stmts): {
+			//"Block(" + stmts2s(stmts) + ")";
+			CodeBlock(statementsToVM(stmts, start, -1), length(stmts));
+		}
+	}
+}
+
+declsArrToVM (arr) {
+	if (length(arr) == 0) {
+		""
+	} else {
+		varDeclToVM(arr[0]) + declsArrToVM(tail(arr))
+	}
+}
+
+declarationsToVM (decls: Declarations) -> string {
+	switch (decls : Declarations) {
+		Declarations(arr): {
+			declsArrToVM(arr)
+		}
+	}
+}
+
+programToVM (p : Program) -> string {
+	switch (p : Program) {
+		Program(declarations, block): {
+			declarationsToVM(declarations) + blockToVM(block, 0).s + "666: "
+		}
+	}
+}
