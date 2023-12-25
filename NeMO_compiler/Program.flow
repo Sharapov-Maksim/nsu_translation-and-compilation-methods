@@ -137,6 +137,24 @@ expr2ast (e : ArExpr) -> string {
 	}
 }
 
+arr2s (arr: [ArInt]) -> string {
+	if (length(arr) == 0) {
+		""
+	} else if (length(arr) == 1) {
+		expr2s(arr[0])
+	} else {
+		expr2s(arr[0]) + ", " + arr2s(tail(arr))
+	}
+}
+
+arrInt2s (arr: ArrInt) -> string {
+	switch (arr : ArrInt) {
+		ArrInt(arrr): {
+			arr2s(arrr);
+		}
+	}
+}
+
 expr2s (e : ArExpr) -> string {
 	switch (e : ArExpr) {
 		ArSum(lhs, rhs): {
@@ -155,7 +173,7 @@ expr2s (e : ArExpr) -> string {
 			"(" + expr2s(lhs) + " % " + expr2s(rhs) + ")";
 		};
 		ArInt(x): { i2s(x) };
-		ArrInt(arr): { "UNSUPPORTED_ARR" };
+		ArrInt(arr): { "["+ arr2s(arr) + "]" };
 		Identifier(id) : { id2s(e) }
 	}
 }
